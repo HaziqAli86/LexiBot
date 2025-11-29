@@ -1,0 +1,91 @@
+"use client";
+
+import { Box, Lock, Search, Settings, Sparkles, Brain, FileText, Cloud } from "lucide-react";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+
+export function FeaturesGrid() {
+  return (
+    <div className="py-20 bg-black relative z-10">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
+           Built for the Future
+        </h2>
+        <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
+          
+          <GridItem
+            area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
+            icon={<Brain className="h-4 w-4 text-zinc-400" />}
+            title="Llama 3.1 8B Model"
+            description="Powered by the latest Meta Llama model for advanced reasoning, coding capabilities, and natural language understanding."
+          />
+
+          <GridItem
+            area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
+            icon={<FileText className="h-4 w-4 text-zinc-400" />}
+            title="Instant Document Analysis"
+            description="Upload PDF or DOCX files. LexiBot reads, summarizes, and extracts key legal or technical points in seconds."
+          />
+
+          <GridItem
+            area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
+            icon={<Lock className="h-4 w-4 text-zinc-400" />}
+            title="Enterprise Security"
+            description="Your data is safe. We use Google Firebase for authentication and AWS Security Groups to ensure isolated environments."
+          />
+
+          <GridItem
+            area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
+            icon={<Cloud className="h-4 w-4 text-zinc-400" />}
+            title="Cloud Native Architecture"
+            description="Deployed on high-performance AWS EC2 instances with Docker containerization for maximum uptime and scalability."
+          />
+
+          <GridItem
+            area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
+            icon={<Sparkles className="h-4 w-4 text-zinc-400" />}
+            title="Rich Text Responses"
+            description="Outputs beautifully formatted Markdown, code blocks, lists, and tables. No more walls of plain text."
+          />
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+interface GridItemProps {
+  area: string;
+  icon: React.ReactNode;
+  title: string;
+  description: React.ReactNode;
+}
+
+const GridItem = ({ area, icon, title, description }: GridItemProps) => {
+  return (
+    <li className={`min-h-[14rem] list-none ${area}`}>
+      <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3 border-white/10 bg-zinc-950">
+        <GlowingEffect
+          spread={40}
+          glow={true}
+          disabled={false}  // <--- CRITICAL: MUST BE FALSE
+          proximity={64}
+          inactiveZone={0.01}
+        />
+        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 md:p-6 border-0.75">
+          <div className="relative flex flex-1 flex-col justify-between gap-3">
+            <div className="w-fit rounded-lg border border-zinc-700 p-2 bg-zinc-900">
+              {icon}
+            </div>
+            <div className="space-y-3">
+              <h3 className="pt-0.5 text-xl font-semibold text-white">
+                {title}
+              </h3>
+              <p className="text-sm text-zinc-400">
+                {description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+};
