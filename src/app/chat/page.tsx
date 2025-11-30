@@ -63,6 +63,7 @@ export default function ChatPage() {
   const fetchConversations = async () => {
     const token = await getToken();
     if (!token) return;
+    console.log("FETCHING FROM:", `${API_URL}/api/v1/chats`); // <-- ADD THIS
     try {
       const res = await axios.get(`${API_URL}/api/v1/chats`, {
         headers: { Authorization: `Bearer ${token}` },
